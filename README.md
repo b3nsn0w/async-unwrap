@@ -38,7 +38,7 @@ async () => {
   const [firstError, firstResult] = await firstOperation()[unwrap]
   if (firstError) throw firstError // we'll handle it on a higher level
 
-  const [secondError, secondResult] = await secondOperation(firstError)[unwrap]
+  const [secondError, secondResult] = await secondOperation(firstResult)[unwrap]
   if (secondError) throw sanitize(secondError) // sometimes you'll need some special treatment
 
   return secondResult
