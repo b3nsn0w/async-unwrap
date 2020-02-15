@@ -21,4 +21,12 @@ describe('symbol version', () => {
     expect(err.message).to.equal('with thunderous applause')
     expect(result).to.equal(null)
   })
+
+  it('returns a friendly error message', async () => {
+    const tryToUnwrap = () => {
+      const [_err, _result] = Promise.resolve('still better than dying because sad')[unwrap] // eslint-disable-line no-unused-vars
+    }
+
+    expect(tryToUnwrap).to.throw(TypeError, 'Raw unwrapped promises are not iterable (did you forget to use await?)')
+  })
 })

@@ -18,6 +18,10 @@ function unwrapPromise (promise, fallbackToUndefined = false) {
     }
   })
 
+  unwrappedPromise[Symbol.iterator] = () => {
+    throw new TypeError('Raw unwrapped promises are not iterable (did you forget to use await?)')
+  }
+
   unwrapped.set(promise, unwrappedPromise)
   return unwrappedPromise
 }
